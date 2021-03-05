@@ -25,7 +25,7 @@ SECRET_KEY = '$m!90fzqjdqgq94&327mevr-fit9p31%8$3wa83w@o+iym3d_k'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['127.0.0.1']
+ALLOWED_HOSTS = ['127.0.0.1','expensemanagermoney.herokuapp.com']
 import os
 
 # Application definition
