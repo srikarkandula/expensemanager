@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<style>
+    h3{
+        padding-left:20%;
+        padding-top:50px;
+        padding-bottom:15px;
+    }
+</style>
+
+<div class="delete">
+	<h3>Are you sure you want to delete "{{expense.name}}" expenditure</h3>
+	<form action="{% url 'DeleteExpense' expense.id %}" method="POST">
+        {% csrf_token %}
+	    <center>	<a href="{% url 'Expense' %}" class="btn btn-warning">Cancel</a>
+            
+		<button class="btn btn-danger">Delete</button>
+        </center>
+	</form>
+</div>
+
+
+
+{% endblock %}

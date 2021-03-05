@@ -1,0 +1,169 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load crispy_forms_tags %}
+<script src="https://kit.fontawesome.com/c25c69112a.js" crossorigin="anonymous"></script>
+<style>
+    h1{
+        padding-left:47%;
+        padding-top: 25px;
+        padding-bottom: 20px;
+    }
+
+    .row{
+        padding-left:13%
+    }
+    
+	#total-orders{
+		background-color: #4cb4c7;
+
+	}
+
+
+	#orders-delivered{
+		background-color: #7abecc;
+	}
+
+	#orders-pending{
+		background-color: #7CD1C0;
+    }
+	.title{
+		background-color:white;
+		padding-top:10px;
+		padding-bottom:10px;
+		text-align:center ;
+
+	}
+	hr{
+		width:50%;
+	
+		border:1px solid blue
+		
+	}
+	.buttons{
+		display:flexbox;
+		flex-direction: row;
+	
+	}
+
+
+
+	
+	
+	    
+</style>
+
+<h1>Expenditure</h1>
+
+
+<div class="row">
+	<div class="col">
+		<div class="col-md">
+			<div class="card text-center text-white  mb-3" id="total-orders">
+			  	<div class="card-header">
+			  		<h5 class="card-title">Total Expenditure</h5>
+			  	</div>
+			  	<div class="card-body">
+			    	<h3 class="card-title">{{a}}</h3>
+			  	</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="col">
+		<div class="col-md">
+			<div class="card text-center text-white  mb-3" id="orders-pending">
+			  	<div class="card-header">
+			  		<h5 class="card-title">Count Expenditure</h5>
+			  	</div>
+			  	<div class="card-body">
+			    	<h3 class="card-title">{{expense_count}}</h3>
+			  	</div>
+			</div>
+		</div>
+	</div>
+
+</div>
+
+<br><br>
+
+<div class="row">
+<div class="col">
+	<div class="title">
+	<h5>LAST 5 EXPENSES</h5>
+	<hr>
+	</div>
+
+	
+
+	<div class="card card-body">
+		
+
+		</form>
+		<div class="row">
+			<div class="col">
+		<a class="btn btn-outline-warning btn-sm btn-block" href="{% url 'newexpense' %}" >Create New</a>
+			</div>
+			<div class="col">
+		<a class="btn btn-outline-info btn-sm  btn-block" href="{% url 'AllExpense' %}">See All</a>
+		</div>	
+		</div>
+		<table class="table table-sm">
+			<tr>
+				<th></th>
+				<th>Name</th>
+				<th>Amount</th>
+				<th>Month</th>
+				<th>Reason</th>
+				<th>Edit</th>
+				<th>Delete</th>
+			</tr>
+
+			{% for expense in expenses %}
+				{% if expense.important == True %}
+				<tr>
+					<td><i class="fas fa-star"></i></td>
+					<td>{{expense.name}}</td>
+					<td>{{expense.amount}}</td>
+					<td>{{expense.month}}</td>
+					<td>{{expense.reason}}</td>
+					<td><a href="{% url 'UpdateExpense' expense.id %}"><i class="fas fa-edit fa-2x" style="padding-left: 3px;"></i></a></td>
+					<td><a href="{% url 'DeleteExpense' expense.id %}"><i class="fas fa-trash-alt fa-2x" style="padding-left: 17px;"></i></a></td>
+
+				</tr>
+				{% else %}
+				<tr>
+					<td></td>
+					<td>{{expense.name}}</td>
+					<td>{{expense.amount}}</td>
+					<td>{{expense.month}}</td>
+					<td>{{expense.reason}}</td>
+					<td><a href="{% url 'UpdateExpense' expense.id %}"><i class="fas fa-edit fa-2x" style="padding-left: 3px;"></i></a></td>
+					<td><a href="{% url 'DeleteExpense' expense.id %}"><i class="fas fa-trash-alt fa-2x" style="padding-left: 17px;"></i></a></td>
+
+				</tr>
+				{% endif %}
+			{% endfor %}
+
+	
+		</table>
+	</div>
+</div>
+
+</div>
+
+
+
+
+<br><br>
+
+
+
+
+	
+<script>
+</script>
+
+
+
+
+    {% endblock %}
